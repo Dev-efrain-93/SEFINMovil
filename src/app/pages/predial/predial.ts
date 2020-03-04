@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { LoadingService } from '../../services/loading.service';
 import { ToastService } from '../../services/toast.service';
 import { Storage } from '@ionic/storage';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'page-predial',
@@ -28,6 +29,7 @@ export class PredialPage implements OnInit {
   consultasPredial: any[]= [];
 
   consultaPredialPrueba: any;
+  backbuttonSubscription: any;
 
   constructor(
     public router: Router,
@@ -35,23 +37,10 @@ export class PredialPage implements OnInit {
     private predialService: PredialService,
     private loadingService: LoadingService,
     private toastService: ToastService,
-    private storage: Storage
+    private storage: Storage,
+    private platform: Platform
   ) {
     
-  }
-
-  public ionViewDidEnter() {
-    //this.resetForm();
-
-    //inicializar consulta predial fake
-    this.inicializarConsultapredialFake();
-
-    //Obtener consultas recientes
-    this.storage.get('consultasPredial').then((consultas) => {
-      this.consultasPredial = consultas || [];
-    });
-
-
   }
 
   ngOnInit() {
@@ -66,6 +55,28 @@ export class PredialPage implements OnInit {
     });
 
   }
+
+  public ionViewDidEnter() {
+    //this.resetForm();
+
+    //inicializar consulta predial fake
+    this.inicializarConsultapredialFake();
+
+    //Obtener consultas recientes
+    this.storage.get('consultasPredial').then((consultas) => {
+      this.consultasPredial = consultas || [];
+    });
+
+    this.backbuttonSubscription = this.platform.backButton.subscribe(() => {
+      this.router.navigateByUrl('/app/tabs/inicio');
+    });
+
+  }
+
+  public ionViewWillLeave() {
+    this.backbuttonSubscription.unsubscribe();
+  }
+
 
   //#region Consulta predial fake
 

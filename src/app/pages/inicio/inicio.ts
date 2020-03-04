@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, IonList, LoadingController, ModalController, ToastController, Config, IonSlides } from '@ionic/angular';
+import { Platform, AlertController, IonList, LoadingController, ModalController, ToastController, Config, IonSlides } from '@ionic/angular';
 import { ScrollDetail } from '@ionic/core';  
 
 @Component({
@@ -34,6 +34,7 @@ export class InicioPage implements OnInit {
 
   ios: boolean;
   excludeTracks: any = [];
+  backbuttonSubscription: any;
 
   constructor(
     public alertCtrl: AlertController,
@@ -41,7 +42,8 @@ export class InicioPage implements OnInit {
     public modalCtrl: ModalController,
     public router: Router,
     public toastCtrl: ToastController,
-    public config: Config
+    public config: Config,
+    public platform: Platform
   ) { 
 
     this.slideItems = [
@@ -93,14 +95,44 @@ export class InicioPage implements OnInit {
     this.ios = this.config.get('mode') === 'ios';
   }
 
-  //Fix: detiene la reproducción automática del slide cuando se sale de la vista
-  public ionViewWillLeave() {
-    this.slides.stopAutoplay();
-  }
-
   //Fix: inicia la reproducción automática del slide cuando se ingresa a la vista
   public ionViewDidEnter() {
     this.slides.startAutoplay();
+
+    this.backbuttonSubscription = this.platform.backButton.subscribe(() => {
+      this.presentConformacionSalir();
+    });
+  }
+
+  //Fix: detiene la reproducción automática del slide cuando se sale de la vista
+  public ionViewWillLeave() {
+    this.slides.stopAutoplay();
+
+    this.backbuttonSubscription.unsubscribe();
+  }
+
+  async presentConformacionSalir() {
+    const confirm = await this.alertCtrl.create({
+      message: 'Usted esta apunto de cerrar la aplicación. ¿Desea continuar?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'medium',
+          handler: ()=> {
+            console.log("Cancelado salida de la app");
+          }
+        }, {
+          text: 'Salir',
+          cssClass: 'primary',
+          handler: () => {
+            navigator['app'].exitApp();
+          }
+        }
+      ]
+    });
+
+    await confirm.present();
   }
 
   async openSocial(network: string, fab: HTMLIonFabElement) {

@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { LoadingService } from '../../services/loading.service';
 import { ToastService } from '../../services/toast.service';
 import { Storage } from '@ionic/storage';
+import { Platform } from '@ionic/angular';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'refrendo',
@@ -21,6 +23,7 @@ export class RefrendoPage implements OnInit {
   
   consultasRefrendo: any[]= [];
   consultaRefrendoPrueba: any;
+  backbuttonSubscription: any;
 
   constructor(
     public router: Router,
@@ -28,8 +31,18 @@ export class RefrendoPage implements OnInit {
     private refrendoService: RefrendoService,
     private loadingService: LoadingService,
     private toastService: ToastService,
-    private storage: Storage
+    private storage: Storage,
+    private platform: Platform
   ) { }
+
+  ngOnInit() {
+
+    this.formularioConsultaRefrendo = this.formBuilder.group({
+      placa: ['', Validators.pattern('^$|^[A-Za-z0-9]+$')],
+      serie: ['', Validators.pattern('^$|^[A-Za-z0-9]+$')]
+    });
+
+  }
 
   public ionViewDidEnter() {
     //this.resetForm();
@@ -42,17 +55,15 @@ export class RefrendoPage implements OnInit {
       this.consultasRefrendo = consultas || [];
     });
 
-
-  }
-
-  ngOnInit() {
-
-    this.formularioConsultaRefrendo = this.formBuilder.group({
-      placa: ['', Validators.pattern('^$|^[A-Za-z0-9]+$')],
-      serie: ['', Validators.pattern('^$|^[A-Za-z0-9]+$')]
+    this.backbuttonSubscription = this.platform.backButton.subscribe(() => {
+      this.router.navigateByUrl('/app/tabs/inicio');
     });
 
   }
+
+  public ionViewWillLeave() {
+    this.backbuttonSubscription.unsubscribe();
+  } 
 
   //#region Consulta refrendo fake
 

@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
-import { PopoverController } from '@ionic/angular';
+import { Platform, PopoverController } from '@ionic/angular';
 
 import { AcercaPopoverPage } from '../acerca-popover/acerca-popover';
 import { Storage } from '@ionic/storage';
@@ -15,12 +15,14 @@ import { AppVersion } from '@ionic-native/app-version/ngx';
 export class AcercaPage {
   appName: string;
   versionNumber: string;
+  backbuttonSubscription: any;
 
   constructor(
     public popoverCtrl: PopoverController,
     private storage: Storage,
     private router: Router,
-    private appVersion: AppVersion
+    private appVersion: AppVersion,
+    public platform: Platform
     ) {
 
       this.appVersion.getAppName().then(value => {
@@ -34,20 +36,31 @@ export class AcercaPage {
         this.versionNumber = value;
       }).catch(err => {
         console.log(err);
-        this.versionNumber = '0.0.0';
+        this.versionNumber = '0.0.x';
       });
     }
 
-  async presentPopover(event: Event) {
-    const popover = await this.popoverCtrl.create({
-      component: AcercaPopoverPage,
-      event: event
-    });
-    await popover.present();
-  }
+    public ionViewDidEnter() {
+      this.backbuttonSubscription = this.platform.backButton.subscribe(() => {
+        this.router.navigateByUrl('/app/tabs/inicio');
+      });
+  
+    }
+  
+    public ionViewWillLeave() {
+      this.backbuttonSubscription.unsubscribe();
+    } 
 
-  openTutorial() {
-    this.storage.set('ion_did_tutorial', false);
-    this.router.navigateByUrl('/tutorial');
-  }
+    async presentPopover(event: Event) {
+      const popover = await this.popoverCtrl.create({
+        component: AcercaPopoverPage,
+        event: event
+      });
+      await popover.present();
+    }
+
+    openTutorial() {
+      this.storage.set('ion_did_tutorial', false);
+      this.router.navigateByUrl('/tutorial');
+    }
 }
