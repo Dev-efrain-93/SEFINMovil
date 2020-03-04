@@ -88,8 +88,9 @@ let DetalleRefrendoPopoverPage = class DetalleRefrendoPopoverPage {
                     .catch(e => console.log("Error al intentar abrir el archivo", entry.toURL()));
             }, error => {
                 this.loadingService.dismiss();
-                console.log(error.exception);
-                this.toastService.info(error.exception);
+                let msj = error.exception ? error.exception : "Servicio no disponible. Intente más tarde";
+                console.log(msj);
+                this.toastService.info(msj);
             });
         }
     }

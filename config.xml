@@ -7,7 +7,7 @@
     <author email="informatica.sefin@gmail.com" href="https://www.contribunet.campeche.gob.mx">
         Subdirección de Sistemas de la Dirección de Informática de la Secretaría de Finanzas del Estado de Campeche.
     </author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://localhost:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -114,4 +114,5 @@
     <plugin name="cordova-plugin-navigationbar-color" spec="0.0.9" />
     <engine name="ios" spec="^4.5.5" />
     <engine name="android" spec="7.0.0" />
+    <allow-navigation href="http://localhost:8100" sessionid="55ef5887" />
 </widget>

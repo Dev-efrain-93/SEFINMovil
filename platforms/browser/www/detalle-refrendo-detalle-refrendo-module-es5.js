@@ -103,8 +103,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 .catch(function (e) { return console.log("Error al intentar abrir el archivo", entry.toURL()); });
                         }, function (error) {
                             _this.loadingService.dismiss();
-                            console.log(error.exception);
-                            _this.toastService.info(error.exception);
+                            var msj = error.exception ? error.exception : "Servicio no disponible. Intente más tarde";
+                            console.log(msj);
+                            _this.toastService.info(msj);
                         });
                     }
                 };

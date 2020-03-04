@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Consultar</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n  <ion-card mode=\"ios\">\n    <ion-card-header>\n      <ion-card-title>Refrendo Vehicular</ion-card-title>\n      <ion-row>\n        <ion-col>\n          <ion-text><p class=\"info-text\">Ingrese al menos uno de los siguientes datos</p></ion-text>\n        </ion-col>\n      </ion-row>\n    </ion-card-header>\n    <ion-card-content class=\"card-content-refrendo\">\n      <ion-grid>\n        \n        <ion-row>\n          <ion-col>\n            <ion-list class=\"form-list\" lines=\"full\">\n              <form [formGroup]=\"formularioConsultaRefrendo\">\n\n                <ion-item>\n                  <ion-label color=\"medium\" position=\"floating\">Placa</ion-label>\n                  <ion-input type=\"text\" formControlName=\"placa\" class=\"form-control\" clearInput placeholder=\"\"></ion-input>\n                  <ion-icon color=\"medium\" src=\"../../../assets/icons/counter.svg\" slot=\"start\"></ion-icon>\n                </ion-item>\n                \n                <ion-item lines=\"none\" class=\"validation-errors\" *ngIf=\"!formularioConsultaRefrendo.controls.placa.valid && (formularioConsultaRefrendo.controls.placa.dirty || enviado)\">\n                    <ion-icon size=\"small\" color=\"danger\" name=\"information-circle\" slot=\"start\" *ngIf=\"formularioConsultaRefrendo.controls.placa.errors.pattern\"></ion-icon><p class=\"error-message\" *ngIf=\"formularioConsultaRefrendo.controls.placa.errors.pattern\">Ingrese una placa de vehículo válida</p>\n                </ion-item>\n\n                <ion-item>\n                  <ion-label color=\"medium\" position=\"floating\">No. de Serie</ion-label>\n                  <ion-input type=\"text\" formControlName=\"serie\" class=\"form-control\" clearInput placeholder=\"\"></ion-input>\n                  <ion-icon color=\"medium\" src=\"../../../assets/icons/numeric.svg\" slot=\"start\"></ion-icon>\n                </ion-item>\n                \n                <ion-item lines=\"none\" class=\"validation-errors\" *ngIf=\"!formularioConsultaRefrendo.controls.serie.valid && (formularioConsultaRefrendo.controls.serie.dirty || enviado)\">\n                    <ion-icon size=\"small\" color=\"danger\" name=\"information-circle\" slot=\"start\" *ngIf=\"formularioConsultaRefrendo.controls.serie.errors.pattern\"></ion-icon><p class=\"error-message\" *ngIf=\"formularioConsultaRefrendo.controls.serie.errors.pattern\">Ingrese un número de serie válido</p>\n                </ion-item>\n\n                <ion-item lines=\"none\" style=\"height:10px;\">\n\n                  </ion-item>\n              </form>\n              </ion-list>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-card-content>\n    <ion-row class=\"cardfooter\" (click)=\"resetForm()\">\n      <ion-col class=\"col-align-center\">\n            <p class=\"p-text-primary\">Limpiar</p>\n      </ion-col>\n    </ion-row>\n    <!-- <img src=\"../../../assets/img/a1486213390617.562732ef5e8c1.jpeg\" style=\"opacity: 0.1;\"> -->\n  </ion-card>\n\n  <ion-card *ngIf=\"consultasRefrendo.length > 0\" mode=\"ios\">\n    <ion-card-header>\n      <ion-card-title>Consultas recientes</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-list lines=\"none\">\n        <ion-item *ngFor=\"let consulta of consultasRefrendo\" detail>\n          <ion-grid>\n            <!--<ion-row (click)=\"ejecutarConsultaReciente(consulta)\">-->\n            <ion-row (click)=\"ejecutarConsultaRecienteFake(consulta)\">\n              <ion-col class=\"align-self-center\">\n                <p *ngIf=\"consulta.data.vehiculo.placaActual\"><strong>Placa: </strong> {{consulta.data.vehiculo.placaActual}}</p>\n                <p *ngIf=\"consulta.data.vehiculo.serie\"><strong>No. de Serie: </strong> {{consulta.data.vehiculo.serie}}</p>\n                <p class=\"medium-color-text\">{{consulta.date | date: 'MMM d, y, h:mm:ss a'}}</p>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n    <ion-row class=\"cardfooter\" (click)=\"removerConsultasRefrendoRecientes()\">\n      <ion-col class=\"col-align-center\">\n            <p class=\"p-text-primary\">Eliminar consultas recientes</p>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n            <!--<ion-button (click)=\"consultarRefrendo()\" expand=\"block\" [disabled]=\"!formularioConsultaRefrendo.valid\" >Buscar</ion-button>-->\n            <!--<ion-button (click)=\"consultarRefrendo()\" expand=\"block\">Buscar</ion-button>-->\n            <ion-button (click)=\"consultaRefrendoFake()\" expand=\"block\">Buscar</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Consultar</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n  <ion-card mode=\"ios\">\n    <ion-card-header>\n      <ion-card-title>Refrendo Vehicular</ion-card-title>\n      <ion-row>\n        <ion-col>\n          <ion-text><p class=\"info-text\">Ingrese al menos uno de los siguientes datos</p></ion-text>\n        </ion-col>\n      </ion-row>\n    </ion-card-header>\n    <ion-card-content class=\"card-content-refrendo\">\n      <ion-grid>\n        \n        <ion-row>\n          <ion-col>\n            <ion-list class=\"form-list\" lines=\"full\">\n              <form [formGroup]=\"formularioConsultaRefrendo\">\n\n                <ion-item>\n                  <ion-label color=\"medium\" position=\"floating\">Placa</ion-label>\n                  <ion-input type=\"text\" formControlName=\"placa\" class=\"form-control\" clearInput placeholder=\"\"></ion-input>\n                  <ion-icon color=\"medium\" src=\"../../../assets/icons/counter.svg\" slot=\"start\"></ion-icon>\n                </ion-item>\n                \n                <ion-item lines=\"none\" class=\"validation-errors\" *ngIf=\"!formularioConsultaRefrendo.controls.placa.valid && (formularioConsultaRefrendo.controls.placa.dirty || enviado)\">\n                    <ion-icon size=\"small\" color=\"danger\" name=\"information-circle\" slot=\"start\" *ngIf=\"formularioConsultaRefrendo.controls.placa.errors.pattern\"></ion-icon><p class=\"error-message\" *ngIf=\"formularioConsultaRefrendo.controls.placa.errors.pattern\">Ingrese una placa de vehículo válida</p>\n                </ion-item>\n\n                <ion-item>\n                  <ion-label color=\"medium\" position=\"floating\">No. de Serie</ion-label>\n                  <ion-input type=\"text\" formControlName=\"serie\" class=\"form-control\" clearInput placeholder=\"\"></ion-input>\n                  <ion-icon color=\"medium\" src=\"../../../assets/icons/numeric.svg\" slot=\"start\"></ion-icon>\n                </ion-item>\n                \n                <ion-item lines=\"none\" class=\"validation-errors\" *ngIf=\"!formularioConsultaRefrendo.controls.serie.valid && (formularioConsultaRefrendo.controls.serie.dirty || enviado)\">\n                    <ion-icon size=\"small\" color=\"danger\" name=\"information-circle\" slot=\"start\" *ngIf=\"formularioConsultaRefrendo.controls.serie.errors.pattern\"></ion-icon><p class=\"error-message\" *ngIf=\"formularioConsultaRefrendo.controls.serie.errors.pattern\">Ingrese un número de serie válido</p>\n                </ion-item>\n\n                <ion-item lines=\"none\" style=\"height:10px;\">\n\n                  </ion-item>\n              </form>\n              </ion-list>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-card-content>\n    <ion-row class=\"cardfooter\" (click)=\"resetForm()\">\n      <ion-col class=\"col-align-center\">\n            <p class=\"p-text-primary\">Limpiar</p>\n      </ion-col>\n    </ion-row>\n    <!-- <img src=\"../../../assets/img/a1486213390617.562732ef5e8c1.jpeg\" style=\"opacity: 0.1;\"> -->\n  </ion-card>\n\n  <ion-card *ngIf=\"consultasRefrendo.length > 0\" mode=\"ios\">\n    <ion-card-header>\n      <ion-card-title>Consultas recientes</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-list lines=\"none\">\n        <ion-item *ngFor=\"let consulta of consultasRefrendo\" detail>\n          <ion-grid>\n            <!--<ion-row (click)=\"ejecutarConsultaReciente(consulta)\">-->\n            <!--<ion-row (click)=\"ejecutarConsultaRecienteFake(consulta)\">-->\n            <ion-row (click)=\"ejecutarConsultaReciente(consulta)\">\n              <ion-col class=\"align-self-center\">\n                <p *ngIf=\"consulta.data.vehiculo.placaActual\"><strong>Placa: </strong> {{consulta.data.vehiculo.placaActual}}</p>\n                <p *ngIf=\"consulta.data.vehiculo.serie\"><strong>No. de Serie: </strong> {{consulta.data.vehiculo.serie}}</p>\n                <p class=\"medium-color-text\">{{consulta.date | date: 'MMM d, y, h:mm:ss a'}}</p>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n    <ion-row class=\"cardfooter\" (click)=\"removerConsultasRefrendoRecientes()\">\n      <ion-col class=\"col-align-center\">\n            <p class=\"p-text-primary\">Eliminar consultas recientes</p>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n            <!-- <ion-button (click)=\"consultarRefrendo()\" expand=\"block\" [disabled]=\"!formularioConsultaRefrendo.valid\" >Buscar</ion-button> -->\n            <!--<ion-button (click)=\"consultarRefrendo()\" expand=\"block\">Buscar</ion-button>-->\n            <ion-button (click)=\"consultaRefrendoFake()\" expand=\"block\">Buscar</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>\n");
 
 /***/ }),
 
@@ -94,6 +94,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_loading_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/loading.service */ "./src/app/services/loading.service.ts");
 /* harmony import */ var _services_toast_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/toast.service */ "./src/app/services/toast.service.ts");
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm2015/ionic-storage.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
@@ -103,15 +105,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let RefrendoPage = class RefrendoPage {
-    constructor(router, formBuilder, refrendoService, loadingService, toastService, storage) {
+    constructor(router, formBuilder, refrendoService, loadingService, toastService, storage, platform) {
         this.router = router;
         this.formBuilder = formBuilder;
         this.refrendoService = refrendoService;
         this.loadingService = loadingService;
         this.toastService = toastService;
         this.storage = storage;
+        this.platform = platform;
         this.enviado = false;
         this.consultasRefrendo = [];
+    }
+    ngOnInit() {
+        this.formularioConsultaRefrendo = this.formBuilder.group({
+            placa: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('^$|^[A-Za-z0-9]+$')],
+            serie: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('^$|^[A-Za-z0-9]+$')]
+        });
     }
     ionViewDidEnter() {
         //this.resetForm();
@@ -121,12 +130,12 @@ let RefrendoPage = class RefrendoPage {
         this.storage.get('consultasRefrendo').then((consultas) => {
             this.consultasRefrendo = consultas || [];
         });
-    }
-    ngOnInit() {
-        this.formularioConsultaRefrendo = this.formBuilder.group({
-            placa: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('^$|^[A-Za-z0-9]+$')],
-            serie: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('^$|^[A-Za-z0-9]+$')]
+        this.backbuttonSubscription = this.platform.backButton.subscribe(() => {
+            this.router.navigateByUrl('/app/tabs/inicio');
         });
+    }
+    ionViewWillLeave() {
+        this.backbuttonSubscription.unsubscribe();
     }
     //#region Consulta refrendo fake
     inicializarConsultaRefrendoFake() {
@@ -269,14 +278,14 @@ let RefrendoPage = class RefrendoPage {
                 let now = new Date(Date.now());
                 this.consultasRefrendo.unshift({
                     date: now,
-                    data: this.refrendo
+                    data: this.refrendo.presupuesto
                 });
                 let slicedArray = this.consultasRefrendo.slice(0, 5);
                 this.storage.set('consultasRefrendo', slicedArray);
                 //#endregion 
                 let navigationExtras = {
                     state: {
-                        refrendo: this.refrendo
+                        refrendo: this.refrendo.presupuesto
                     }
                 };
                 this.router.navigateByUrl('/app/tabs/refrendo/detalle-refrendo', navigationExtras);
@@ -332,7 +341,8 @@ RefrendoPage.ctorParameters = () => [
     { type: _services_refrendo_service__WEBPACK_IMPORTED_MODULE_4__["RefrendoService"] },
     { type: _services_loading_service__WEBPACK_IMPORTED_MODULE_5__["LoadingService"] },
     { type: _services_toast_service__WEBPACK_IMPORTED_MODULE_6__["ToastService"] },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_7__["Storage"] }
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_7__["Storage"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["Platform"] }
 ];
 RefrendoPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -345,7 +355,8 @@ RefrendoPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _services_refrendo_service__WEBPACK_IMPORTED_MODULE_4__["RefrendoService"],
         _services_loading_service__WEBPACK_IMPORTED_MODULE_5__["LoadingService"],
         _services_toast_service__WEBPACK_IMPORTED_MODULE_6__["ToastService"],
-        _ionic_storage__WEBPACK_IMPORTED_MODULE_7__["Storage"]])
+        _ionic_storage__WEBPACK_IMPORTED_MODULE_7__["Storage"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["Platform"]])
 ], RefrendoPage);
 
 
