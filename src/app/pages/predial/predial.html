@@ -74,8 +74,8 @@
       <ion-list lines="none">
         <ion-item *ngFor="let consulta of consultasPredial" detail>
           <ion-grid>
-            <!--<ion-row (click)="ejecutarConsultaReciente(consulta)">-->
-            <ion-row (click)="ejecutarConsultaRecienteFake(consulta)">
+            <!-- <ion-row (click)="ejecutarConsultaRecienteFake(consulta)"> -->
+            <ion-row (click)="ejecutarConsultaReciente(consulta)">
               <ion-col class="align-self-center">
                 <p *ngIf="consulta.municipio"><strong>Municipio: </strong> {{consulta.municipio.nombre}}</p>
                 <p><strong>Cuenta: </strong> {{consulta.data.predio.numeroCuenta}}</p>
@@ -98,9 +98,9 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-            <!--<ion-button (click)="consultarPredial()" expand="block" [disabled]="!formularioConsultaPredial.valid" >Buscar</ion-button>-->
+            <ion-button (click)="consultarPredial()" expand="block" [disabled]="!formularioConsultaPredial.valid" >Buscar</ion-button>
             <!--<ion-button (click)="consultarPredial()" expand="block">Buscar</ion-button>-->
-            <ion-button (click)="consultaPredialFake()" expand="block">Buscar</ion-button>
+            <!-- <ion-button (click)="consultaPredialFake()" expand="block">Buscar</ion-button> -->
         </ion-col>
       </ion-row>
     </ion-grid>

@@ -223,7 +223,7 @@ export class RefrendoPage implements OnInit {
 
         this.consultasRefrendo.unshift({
           date: now,
-          data: this.refrendo
+          data: this.refrendo.presupuesto
         });
     
         let slicedArray = this.consultasRefrendo.slice(0,5);
@@ -232,7 +232,7 @@ export class RefrendoPage implements OnInit {
 
         let navigationExtras: NavigationExtras = {
           state: {
-            refrendo: this.refrendo
+            refrendo: this.refrendo.presupuesto
           }
         }
 
